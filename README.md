@@ -10,6 +10,7 @@ wget -c https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz -O - | tar -xz
 mkdir -p ~/.mujoco
 mv ./mujoco210 ~/.mujoco
 ```
+
 ## Dependencies
 We use conda to manage our dependencies. First, download Anaconda, make a conda environment (such as conda activate `mujoco_py`) and run the following commands:
 ```
