@@ -1,12 +1,24 @@
 import mujoco 
+import mediapy as media
 
-with open("../environments/arm/gen3.xml", "r") as file:
+with open("../environments/arm/scene.xml", "r") as file:
   xml = file.read()
 
-model = mujoco.MjModel.from_xml_string(xml)
+arm = mujoco.MjModel.from_xml_string(xml)
 
-# create data and render
-data = mujoco.MjData(model)
-renderer = mujoco.Renderer(model)
+# with open("../environments/cat/go1.xml", "r") as file:
+#   xml = file.read()
 
-print(data)
+# cat = mujoco.MjModel.from_xml_string(xml)
+
+# data stores the state and quantities that depend of it
+# The state is made up of time, generalized positions and generalized velocities. 
+# These are respectively <data>.time, <data>.qpos and <data>.qvel
+arm_data = mujoco.MjData(arm)
+# cat_data = mujoco.MjData(cat)
+
+# render and show 
+with mujoco.Renderer(arm) as renderer:
+  media.write_image('graphics/agent.png', renderer.render())
+
+print(arm_data.time)
