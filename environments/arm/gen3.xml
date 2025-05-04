@@ -1,9 +1,9 @@
 <mujoco model="gen3">
-  <compiler angle="radian" meshdir="../environments/arm/assets"/>
+  <!-- <compiler angle="radian" meshdir="../environments/arm/assets"/> -->
 
-  <option integrator="implicitfast"/>
+  <!-- <option integrator="implicitfast"/> -->
 
-  <default>
+<!--   <default>
     <default class="visual">
       <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="0.75294 0.75294 0.75294 1"/>
     </default>
@@ -17,9 +17,9 @@
       <position kp="500" kv="50" forcerange="-52 52"/>
     </default>
     <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
-  </default>
+  </default> -->
 
-  <asset>
+<!--   <asset>
     <mesh name="base_link" file="base_link.stl"/>
     <mesh name="shoulder_link" file="shoulder_link.stl"/>
     <mesh name="half_arm_1_link" file="half_arm_1_link.stl"/>
@@ -28,7 +28,7 @@
     <mesh name="spherical_wrist_1_link" file="spherical_wrist_1_link.stl"/>
     <mesh name="spherical_wrist_2_link" file="spherical_wrist_2_link.stl"/>
     <mesh name="bracelet_with_vision_link" file="bracelet_with_vision_link.stl"/>
-  </asset>
+  </asset> -->
 
   <worldbody>
     <body name="base_link">
@@ -91,7 +91,7 @@
     </body>
   </worldbody>
 
-  <actuator>
+<!--   <actuator>
     <position class="large_actuator" name="joint_1" joint="joint_1"/>
     <position class="large_actuator" name="joint_2" joint="joint_2" ctrlrange="-2.2497294058206907 2.2497294058206907"/>
     <position class="large_actuator" name="joint_3" joint="joint_3"/>
@@ -99,12 +99,12 @@
     <position class="small_actuator" name="joint_5" joint="joint_5"/>
     <position class="small_actuator" name="joint_6" joint="joint_6" ctrlrange="-2.0996310901491784 2.0996310901491784"/>
     <position class="small_actuator" name="joint_7" joint="joint_7"/>
-  </actuator>
+  </actuator> -->
 
-  <keyframe>
+<!--   <keyframe>
     <key name="home" qpos="0 0.26179939 3.14159265 -2.26892803 0 0.95993109 1.57079633"
       ctrl="0 0.26179939 3.14159265 -2.26892803 0 0.95993109 1.57079633"/>
     <key name="retract" qpos="0 -0.34906585 3.14159265 -2.54818071 0 -0.87266463 1.57079633"
       ctrl="0 -0.34906585 3.14159265 -2.54818071 0 -0.87266463 1.57079633"/>
-  </keyframe>
+  </keyframe> -->
 </mujoco>

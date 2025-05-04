@@ -1,0 +1,134 @@
+<mujoco>
+    <compiler meshdir="../environments/assets"/>
+    <option integrator="implicitfast"/>
+    
+    <option gravity="0 0 -9.81"/> <!-- Standard gravity -->
+
+    <default>
+    <default class="go1">
+      <geom friction="0.6" margin="0.001" condim="1"/>
+      <joint axis="0 1 0" damping="2" armature="0.01" frictionloss="0.2"/>
+      <position kp="100" forcerange="-23.7 23.7"/>
+      <default class="abduction">
+        <joint axis="1 0 0" damping="1" range="-0.863 0.863"/>
+        <position ctrlrange="-0.863 0.863"/>
+      </default>
+      <default class="hip">
+        <joint range="-0.686 4.501"/>
+        <position ctrlrange="-0.686 4.501"/>
+      </default>
+      <default class="knee">
+        <joint range="-2.818 -0.888"/>
+        <position forcerange="-35.55 35.55" ctrlrange="-2.818 -0.888"/>
+      </default>
+ <!--      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" material="dark"/> -->
+      </default>
+      <default class="collision">
+        <geom group="3" type="capsule"/>
+        <default class="hip_left1">
+          <geom size="0.046 0.02" pos="0 0.045 0" quat="1 1 0 0" type="cylinder"/>
+        </default>
+        <default class="hip_left2">
+          <geom size="0.031 0.02" pos="0 0.065 0" quat="1 1 0 0" type="cylinder"/>
+        </default>
+        <default class="hip_left3">
+          <geom size="0.046 0.02" quat="1 1 0 0" type="cylinder"/>
+        </default>
+        <default class="hip_right1">
+          <geom size="0.046 0.02" pos="0 -0.045 0" quat="1 1 0 0" type="cylinder"/>
+        </default>
+        <default class="hip_right2">
+          <geom size="0.031 0.02" pos="0 -0.065 0" quat="1 1 0 0" type="cylinder"/>
+        </default>
+        <default class="hip_right3">
+          <geom size="0.046 0.02" quat="1 1 0 0" type="cylinder"/>
+        </default>
+        <default class="thigh1">
+          <geom size="0.015" fromto="-0.02 0 0 -0.02 0 -0.16"/>
+        </default>
+        <default class="thigh2">
+          <geom size="0.015" fromto="0 0 0 -0.02 0 -0.1"/>
+        </default>
+        <default class="thigh3">
+          <geom size="0.015" fromto="-0.02 0 -0.16 0 0 -0.2"/>
+        </default>
+        <default class="calf1">
+          <geom size="0.01" fromto="0 0 0 0.02 0 -0.13"/>
+        </default>
+        <default class="calf2">
+          <geom size="0.01" fromto="0.02 0 -0.13 0 0 -0.2"/>
+        </default>
+        <default class="foot">
+          <geom type="sphere" size="0.023" pos="0 0 -0.213" priority="1" solimp="0.015 1 0.023" condim="6"
+            friction="0.8 0.02 0.01"/>
+        </default>
+      </default>
+    </default>
+
+    <default class="visual">
+      <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="0.75294 0.75294 0.75294 1"/>
+    </default>
+    <default class="collision">
+      <geom type="mesh" group="3"/>
+    </default>
+    <default class="large_actuator">
+      <position kp="2000" kv="100" forcerange="-105 105"/>
+    </default>
+    <default class="small_actuator">
+      <position kp="500" kv="50" forcerange="-52 52"/>
+    </default>
+    <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+  </default>
+
+    <asset>
+	    <material name="dark" rgba="0.2 0.2 0.2 1"/>
+	    <mesh class="go1" file="trunk.stl"/>
+	    <mesh class="go1" file="hip.stl"/>
+	    <mesh class="go1" file="thigh_mirror.stl"/>
+	    <mesh class="go1" file="calf.stl"/>
+	    <mesh class="go1" file="thigh.stl"/>
+	    <mesh name="base_link" file="base_link.stl"/>
+	    <mesh name="shoulder_link" file="shoulder_link.stl"/>
+	    <mesh name="half_arm_1_link" file="half_arm_1_link.stl"/>
+	    <mesh name="half_arm_2_link" file="half_arm_2_link.stl"/>
+	    <mesh name="forearm_link" file="forearm_link.stl"/>
+	    <mesh name="spherical_wrist_1_link" file="spherical_wrist_1_link.stl"/>
+	    <mesh name="spherical_wrist_2_link" file="spherical_wrist_2_link.stl"/>
+	    <mesh name="bracelet_with_vision_link" file="bracelet_with_vision_link.stl"/>
+	  </asset>
+
+    <worldbody>
+        <!-- Add a simple ground plane -->
+        <geom type="plane" size="5 5 0.1" rgba="0.5 0.5 0.5 1"/>
+
+        <!-- Include first agent (Unitree Go1) -->
+        <include file="../environments/arm/gen3.xml"/>
+
+        <!-- Include second agent (A1) -->
+        <include file="../environments/cat/go1.xml"/>
+    </worldbody>
+
+    <actuator>
+	    <position class="large_actuator" name="joint_1" joint="joint_1"/>
+	    <position class="large_actuator" name="joint_2" joint="joint_2" ctrlrange="-2.2497294058206907 2.2497294058206907"/>
+	    <position class="large_actuator" name="joint_3" joint="joint_3"/>
+	    <position class="large_actuator" name="joint_4" joint="joint_4" ctrlrange="-2.5795966344476193 2.5795966344476193"/>
+	    <position class="small_actuator" name="joint_5" joint="joint_5"/>
+	    <position class="small_actuator" name="joint_6" joint="joint_6" ctrlrange="-2.0996310901491784 2.0996310901491784"/>
+	    <position class="small_actuator" name="joint_7" joint="joint_7"/>
+
+	    <position class="abduction" name="FR_hip" joint="FR_hip_joint"/>
+	    <position class="hip" name="FR_thigh" joint="FR_thigh_joint"/>
+	    <position class="knee" name="FR_calf" joint="FR_calf_joint"/>
+	    <position class="abduction" name="FL_hip" joint="FL_hip_joint"/>
+	    <position class="hip" name="FL_thigh" joint="FL_thigh_joint"/>
+	    <position class="knee" name="FL_calf" joint="FL_calf_joint"/>
+	    <position class="abduction" name="RR_hip" joint="RR_hip_joint"/>
+	    <position class="hip" name="RR_thigh" joint="RR_thigh_joint"/>
+	    <position class="knee" name="RR_calf" joint="RR_calf_joint"/>
+	    <position class="abduction" name="RL_hip" joint="RL_hip_joint"/>
+	    <position class="hip" name="RL_thigh" joint="RL_thigh_joint"/>
+	    <position class="knee" name="RL_calf" joint="RL_calf_joint"/>
+    </actuator>
+</mujoco>
