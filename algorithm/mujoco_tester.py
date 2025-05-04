@@ -1,7 +1,7 @@
 import mujoco 
 import mediapy as media
 
-with open("../environments/arm/scene.xml", "r") as file:
+with open("../environments/main_scene.xml", "r") as file:
   xml = file.read()
 
 arm = mujoco.MjModel.from_xml_string(xml)
